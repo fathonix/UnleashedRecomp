@@ -113,6 +113,47 @@
                 "CMAKE_BUILD_TYPE": "Release",
                 "CMAKE_INTERPROCEDURAL_OPTIMIZATION": true
             }
+        },
+        {
+            "name": "arm64-linux-base",
+            "hidden": true,
+            "inherits": "linux-base",
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": {
+                    "value": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+                    "type": "FILEPATH"
+                },
+                "VCPKG_TARGET_TRIPLET": {
+                    "value": "arm64-linux",
+                    "type": "STRING"
+                },
+                "VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/toolchains/linux-clang.cmake"
+            }
+        },
+        {
+            "name": "arm64-linux-debug",
+            "displayName": "Arm64-Linux-Debug",
+            "inherits": "arm64-linux-base",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "arm64-linux-relwithdebinfo",
+            "displayName": "Arm64-Linux-RelWithDebInfo",
+            "inherits": "arm64-linux-base",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "RelWithDebInfo"
+            }
+        },
+        {
+            "name": "arm64-linux-release",
+            "displayName": "Arm64-Linux-Release",
+            "inherits": "arm64-linux-base",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_INTERPROCEDURAL_OPTIMIZATION": true
+            }
         }
     ]
 }

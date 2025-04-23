@@ -324,7 +324,6 @@ if (CMAKE_SYSTEM_NAME MATCHES "Linux")
     target_compile_definitions(UnleashedRecomp PRIVATE SDL_VULKAN_ENABLED)
 endif()
 
-find_package(directx-dxc REQUIRED)
 find_package(CURL REQUIRED)
 
 if (UNLEASHED_RECOMP_D3D12)
@@ -347,8 +346,6 @@ if (UNLEASHED_RECOMP_D3D12)
         dxgi
     )
 endif()
-
-file(CHMOD ${DIRECTX_DXC_TOOL} PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE)
 
 if (WIN32)
     target_link_libraries(UnleashedRecomp PRIVATE
@@ -410,11 +407,11 @@ function(compile_shader FILE_PATH TARGET_NAME)
 endfunction()
 
 function(compile_vertex_shader FILE_PATH)
-    compile_shader(${FILE_PATH} vs_6_0 -fvk-invert-y)
+    compile_shader(${FILE_PATH} vs_6_0 -fvk-invert-y -DUNLEASHED_RECOMP)
 endfunction()
 
 function(compile_pixel_shader FILE_PATH)
-    compile_shader(${FILE_PATH} ps_6_0)
+    compile_shader(${FILE_PATH} ps_6_0 -DUNLEASHED_RECOMP)
 endfunction()
 
 compile_pixel_shader(blend_color_alpha_ps)

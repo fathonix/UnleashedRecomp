@@ -1,5 +1,7 @@
 #include <stdafx.h>
+#ifdef __x86_64__
 #include <cpuid.h>
+#endif
 #include <cpu/guest_thread.h>
 #include <gpu/video.h>
 #include <kernel/function.h>
@@ -165,10 +167,10 @@ uint32_t LdrLoadModule(const std::filesystem::path &path)
     return entry;
 }
 
+#ifdef __x86_64__
 __attribute__((constructor(101), target("no-avx,no-avx2"), noinline))
 void init()
 {
-#ifdef __x86_64__
     uint32_t eax, ebx, ecx, edx;
 
     // Execute CPUID for processor info and feature bits.
@@ -185,8 +187,8 @@ void init()
 
         std::_Exit(1);
     }
-#endif
 }
+#endif
 
 int main(int argc, char *argv[])
 {

@@ -128,6 +128,10 @@
                     "type": "STRING"
                 },
                 "VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/toolchains/linux-clang.cmake"
+            },
+            "environment": {
+                "VCPKG_ROOT": "${sourceDir}/thirdparty/vcpkg",
+                "VCPKG_FORCE_SYSTEM_BINARIES": "true"
             }
         },
         {

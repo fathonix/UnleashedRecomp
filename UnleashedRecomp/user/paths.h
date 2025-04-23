@@ -10,14 +10,17 @@
 
 extern std::filesystem::path g_executableRoot;
 
-inline std::filesystem::path GetGamePath()
-{
-    return GAME_INSTALL_DIRECTORY;
-}
-
 bool CheckPortable();
 std::filesystem::path BuildUserPath();
 const std::filesystem::path& GetUserPath();
+
+inline std::filesystem::path GetGamePath()
+{
+    if (CheckPortable())
+        return GAME_INSTALL_DIRECTORY;
+    else
+        return GetUserPath();
+}
 
 inline std::filesystem::path GetSavePath(bool checkForMods)
 {
